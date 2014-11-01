@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yo.mapper.BoardMapper">
+<!--   <select id="list" resultType="org.yo.vo.BbsVO">
+  <![CDATA[
+  select rn, bbsno, title, content, writer, regdate, viewcnt, isfile from
+  (select rownum rn, bbsno, title, content, writer, regdate, viewcnt, isfile
+  from tbl_bbs where rownum <=(#{page}*15) order by bbsno desc) where rn >= (((#{page}-1)*15)+1)
+  ]]>
+  </select> -->
+  
+  <select id="list" parameterType="org.yo.web.util.BbsCriteria" resultType="org.yo.vo.BbsVO">
+
+   <![CDATA[
+      select rn, bbsno, title, writer, regdate, viewcnt, ceil(sysdate-regdate) newdata,  cnt, isfile
+      from (select /*+INDEX_DESC(tbl_bbs pk_bbs) */
+      rownum rn, bbsno, title, writer, regdate, viewcnt, count(bbsno) over() cnt, isfile 
+      from tbl_bbs
+   where bbsno > 0 and rownum <= ((CEIl(#{currentPage})*75)+1)
+   ]]>    ${sql} 
+   <![CDATA[   ) where rn>((#{currentPage}-1)*15) and rn<=(#{currentPage}*15)
+    ]]>
+    
+	</select>
+  
+ <update id="update" parameterType="org.yo.vo.BbsVO">
+     UPDATE tbl_bbs
+    <!--  SET title=${title}, writer=#{writer}, content=#{content}
+     where bbsno=#{bbsno} -->
+    <set>
+      <if test="title != null">title=#{title},</if>
+      <if test="writer != null">writer=#{writer},</if>
+      <if test="content != null">content=#{content},</if>
+      <if test="isfile != null">isfile=#{isfile}</if>
+    </set>
+    where bbsno=#{bbsNo}
+ </update>
+ 
+ <insert id="create" parameterType="org.yo.vo.BbsVO" useGeneratedKeys="true">
+ 	<selectKey keyProperty="bbsNo" resultType="int" order="BEFORE">
+            SELECT seq_bbs.nextVal from dual
+    </selectKey>
+    <![CDATA[insert into tbl_bbs (bbsno, title, content, writer, isfile)
+   values (#{bbsNo}, #{title},#{content},#{writer},#{isfile})]]>
+ </insert>
+ 
+  <select id="read" parameterType="int" resultType="org.yo.vo.BbsVO">
+select /*+INDEX_DESC(tbl_bbs pk_bbs)*/  
+b.bbsno, title, writer, regdate, viewcnt, content, substr(filename, instr(filename, '_')+1) filename, isfile
+from tbl_bbs b, tbl_file f where b.bbsno=#{bbsno} and b.bbsno = f.bbsno(+) 
+ </select>
+ 
+<!--  <insert id="create" parameterType="org.yo.vo.BbsVO">
+   <![CDATA[insert into tbl_bbs (bbsno, title, content, writer, isfile)
+   values (seq_bbs.nextval, #{title},#{content},#{writer},#{isfile})]]>
+</insert> -->
+  
+</mapper>
