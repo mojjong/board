@@ -88,8 +88,8 @@ function writeData(){
 
 function modifyData(){
 	var bno = document.form1.bbsno.value;
-	//var div = document.getElementById("viewContent_"+bno);
-	var realcontent = document.getElementById("realContent");
+	var div = document.getElementById("viewContent_"+bno);
+	//var realcontent = document.getElementById("realContent");
 	
 	  var xhr = 
 		  (typeof XMLHttpRequest != 'undefined')
@@ -103,7 +103,7 @@ function modifyData(){
 	      status = xhr.status;
 	      if (status == 200) {
 	        data = xhr.responseText;
-	        realcontent.innerHTML = data;
+	        div.innerHTML = data;
 	      } else {
 	    	  alert("불러오기 실패");
 	      }

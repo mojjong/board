@@ -39,9 +39,13 @@ public class BoardService {
 	}
 	
 	public void create(BbsVO vo){
-		mapper.create(vo);
-		//logger.info(vo.getBbsNo().toString());
 		
+		if(vo.getIsfile().equals("T")){
+			mapper.create(vo);
+			mapper.singleUpload(vo);
+		}else{
+			mapper.create(vo);
+		}
 	};
 				
 	public void delete(Integer bbsno){

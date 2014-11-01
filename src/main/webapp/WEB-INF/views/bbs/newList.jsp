@@ -81,7 +81,7 @@ div.viewcontent {
 
 </style>
 <!-- BbsController에 의해 호출될 data.jsp페이지 -->
-<!-- data.html내용을 그대로 긁어와서 resources파일내부로 링크를 건 모든 곳(../../되있던곳)에 /resources/라고 직접 넣어줌... -->
+<!-- data.html내용을 그대로 긁어와서 resources파일내부로 링크를 건 모든 곳(resources/되있던곳)에 /resources/라고 직접 넣어줌... -->
 
 <meta charset="UTF-8">
 <!--  <base href="http://localhost:8080/${pageContext.request.contextPath}"/>-->
@@ -116,7 +116,7 @@ div.viewcontent {
 </head>
 <body class="skin-blue">
 	<!-- header logo: style can be found in header.less -->
-	<header class="header"> <a href="../../index.html"
+	<header class="header"> <a href="/resources/index.html"
 		class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
 		AdminLTE
 	</a> <!-- Header Navbar: style can be found in header.less --> <nav
@@ -141,7 +141,7 @@ div.viewcontent {
 							<li>
 								<!-- start message --> <a href="#">
 									<div class="pull-left">
-										<img src="../../img/avatar3.png" class="img-circle"
+										<img src="/resources/img/avatar3.png" class="img-circle"
 											alt="User Image" />
 									</div>
 									<h4>
@@ -154,7 +154,7 @@ div.viewcontent {
 							<!-- end message -->
 							<li><a href="#">
 									<div class="pull-left">
-										<img src="../../img/avatar2.png" class="img-circle"
+										<img src="/resources/img/avatar2.png" class="img-circle"
 											alt="user image" />
 									</div>
 									<h4>
@@ -165,7 +165,7 @@ div.viewcontent {
 							</a></li>
 							<li><a href="#">
 									<div class="pull-left">
-										<img src="../../img/avatar.png" class="img-circle"
+										<img src="/resources/img/avatar.png" class="img-circle"
 											alt="user image" />
 									</div>
 									<h4>
@@ -175,7 +175,7 @@ div.viewcontent {
 							</a></li>
 							<li><a href="#">
 									<div class="pull-left">
-										<img src="../../img/avatar2.png" class="img-circle"
+										<img src="/resources/img/avatar2.png" class="img-circle"
 											alt="user image" />
 									</div>
 									<h4>
@@ -186,7 +186,7 @@ div.viewcontent {
 							</a></li>
 							<li><a href="#">
 									<div class="pull-left">
-										<img src="../../img/avatar.png" class="img-circle"
+										<img src="/resources/img/avatar.png" class="img-circle"
 											alt="user image" />
 									</div>
 									<h4>
@@ -312,7 +312,7 @@ div.viewcontent {
 				<ul class="dropdown-menu">
 					<!-- User image -->
 					<li class="user-header bg-light-blue"><img
-						src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+						src="/resources/img/avatar3.png" class="img-circle" alt="User Image" />
 						<p>
 							Jane Doe - Web Developer <small>Member since Nov. 2012</small>
 						</p></li>
@@ -347,7 +347,7 @@ div.viewcontent {
 		<section class="sidebar"> <!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+				<img src="/resources/img/avatar3.png" class="img-circle" alt="User Image" />
 			</div>
 			<div class="pull-left info">
 				<p>Hello, Jane</p>
@@ -369,10 +369,10 @@ div.viewcontent {
 		</form>
 		<!-- /.search form --> <!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
-			<li><a href="../../index.html"> <i class="fa fa-dashboard"></i>
+			<li><a href="/resources/index.html"> <i class="fa fa-dashboard"></i>
 					<span>Dashboard</span>
 			</a></li>
-			<li><a href="../widgets.html"> <i class="fa fa-th"></i> <span>Widgets</span>
+			<li><a href="/resources/widgets.html"> <i class="fa fa-th"></i> <span>Widgets</span>
 					<small class="badge pull-right bg-green">new</small>
 			</a></li>
 			<li class="treeview"><a href="#"> <i
@@ -380,37 +380,37 @@ div.viewcontent {
 					class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
-					<li><a href="../charts/morris.html"><i
+					<li><a href="/resources/charts/morris.html"><i
 							class="fa fa-angle-double-right"></i> Morris</a></li>
-					<li><a href="../charts/flot.html"><i
+					<li><a href="/resources/charts/flot.html"><i
 							class="fa fa-angle-double-right"></i> Flot</a></li>
-					<li><a href="../charts/inline.html"><i
+					<li><a href="/resources/charts/inline.html"><i
 							class="fa fa-angle-double-right"></i> Inline charts</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
 					<span>UI Elements</span> <i class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
-					<li><a href="../UI/general.html"><i
+					<li><a href="/resources/UI/general.html"><i
 							class="fa fa-angle-double-right"></i> General</a></li>
-					<li><a href="../UI/icons.html"><i
+					<li><a href="/resources/UI/icons.html"><i
 							class="fa fa-angle-double-right"></i> Icons</a></li>
-					<li><a href="../UI/buttons.html"><i
+					<li><a href="/resources/UI/buttons.html"><i
 							class="fa fa-angle-double-right"></i> Buttons</a></li>
-					<li><a href="../UI/sliders.html"><i
+					<li><a href="/resources/UI/sliders.html"><i
 							class="fa fa-angle-double-right"></i> Sliders</a></li>
-					<li><a href="../UI/timeline.html"><i
+					<li><a href="/resources/UI/timeline.html"><i
 							class="fa fa-angle-double-right"></i> Timeline</a></li>
 				</ul></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-edit"></i>
 					<span>Forms</span> <i class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
-					<li><a href="../forms/general.html"><i
+					<li><a href="/resources/forms/general.html"><i
 							class="fa fa-angle-double-right"></i> General Elements</a></li>
-					<li><a href="../forms/advanced.html"><i
+					<li><a href="/resources/forms/advanced.html"><i
 							class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-					<li><a href="../forms/editors.html"><i
+					<li><a href="/resources/forms/editors.html"><i
 							class="fa fa-angle-double-right"></i> Editors</a></li>
 				</ul></li>
 			<li class="treeview active"><a href="#"> <i
@@ -420,32 +420,32 @@ div.viewcontent {
 				<ul class="treeview-menu">
 					<li><a href="simple.html"><i
 							class="fa fa-angle-double-right"></i> Simple tables</a></li>
-					<li class="active"><a href="list"><i
+					<li class="active"><a href="board"><i
 							class="fa fa-angle-double-right"></i> Yo Free Board</a></li>
 				</ul></li>
-			<li><a href="../calendar.html"> <i class="fa fa-calendar"></i>
+			<li><a href="/resources/calendar.html"> <i class="fa fa-calendar"></i>
 					<span>Calendar</span> <small class="badge pull-right bg-red">3</small>
 			</a></li>
-			<li><a href="../mailbox.html"> <i class="fa fa-envelope"></i>
+			<li><a href="/resources/mailbox.html"> <i class="fa fa-envelope"></i>
 					<span>Mailbox</span> <small class="badge pull-right bg-yellow">12</small>
 			</a></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-folder"></i>
 					<span>Examples</span> <i class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
-					<li><a href="../examples/invoice.html"><i
+					<li><a href="/resources/examples/invoice.html"><i
 							class="fa fa-angle-double-right"></i> Invoice</a></li>
-					<li><a href="../examples/login.html"><i
+					<li><a href="/resources/examples/login.html"><i
 							class="fa fa-angle-double-right"></i> Login</a></li>
-					<li><a href="../examples/register.html"><i
+					<li><a href="/resources/examples/register.html"><i
 							class="fa fa-angle-double-right"></i> Register</a></li>
-					<li><a href="../examples/lockscreen.html"><i
+					<li><a href="/resources/examples/lockscreen.html"><i
 							class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-					<li><a href="../examples/404.html"><i
+					<li><a href="/resources/examples/404.html"><i
 							class="fa fa-angle-double-right"></i> 404 Error</a></li>
-					<li><a href="../examples/500.html"><i
+					<li><a href="/resources/examples/500.html"><i
 							class="fa fa-angle-double-right"></i> 500 Error</a></li>
-					<li><a href="../examples/blank.html"><i
+					<li><a href="/resources/examples/blank.html"><i
 							class="fa fa-angle-double-right"></i> Blank Page</a></li>
 				</ul></li>
 		</ul>
@@ -548,14 +548,14 @@ div.viewcontent {
 		src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
 		type="text/javascript"></script>
 	<!-- DATA TABES SCRIPT -->
-	<script src="../../js/plugins/datatables/jquery.dataTables.js"
+	<script src="/resources/js/plugins/datatables/jquery.dataTables.js"
 		type="text/javascript"></script>
-	<script src="../../js/plugins/datatables/dataTables.bootstrap.js"
+	<script src="/resources/js/plugins/datatables/dataTables.bootstrap.js"
 		type="text/javascript"></script>
 	<!-- AdminLTE App -->
-	<script src="../../js/AdminLTE/app.js" type="text/javascript"></script>
+	<script src="/resources/js/AdminLTE/app.js" type="text/javascript"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="../../js/AdminLTE/demo.js" type="text/javascript"></script>
+	<script src="/resources/js/AdminLTE/demo.js" type="text/javascript"></script>
 	<!-- page script -->
 	<script type="text/javascript">
 		$(function() {

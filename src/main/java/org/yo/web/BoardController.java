@@ -30,7 +30,6 @@ public class BoardController {
 	@RequestMapping("/board")
 	public String board(@RequestParam(value="page", defaultValue = "1")Integer page, String category, String keyword, Model model){	//���������� model ��ü ����
 		
-		logger.info(keyword);
 		Criteria cri = new BbsCriteria();
 		
 		
