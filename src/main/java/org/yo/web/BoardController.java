@@ -1,6 +1,8 @@
 package org.yo.web;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -8,10 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.yo.service.BoardService;
 import org.yo.vo.BbsVO;
 import org.yo.web.util.BbsCriteria;
@@ -79,8 +81,9 @@ public class BoardController {
 		service.create(vo.setIsfile("F"));
 		logger.info(vo.getBbsNo().toString());
 		model.addAttribute("vo", service.read(vo.getBbsNo()));
-		return "bbs/view";
+		return "redirect:/bbs/board";
 	}
+	
 	
 	//글 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

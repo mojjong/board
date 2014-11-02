@@ -7,26 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 public class BbsCriteria extends Snippet implements Criteria {
-	private int cnt;		//? „ì²? ê¸? ê°œìˆ˜
-	private int startPage;		//?‹œ?‘ ?˜?´ì§?	
-	private int endPage;		//? ?˜?´ì§?
-	private int currentBlock;	//?˜„?¬ ë¸”ë¡
-	private int totalPage;		//? „ì²? ?˜?´ì§?
-	private int totalBlock;		//? „ì²? ë¸”ë¡
-	private int currentPage;	//?˜„?¬ ?˜?´ì§?
+	private int cnt;		//?ï¿½ï¿½ï¿½? ï¿½? ê°œìˆ˜
+	private int startPage;		//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?	
+	private int endPage;		//?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?
+	private int currentBlock;	//?ï¿½ï¿½?ï¿½ï¿½ ë¸”ë¡
+	private int totalPage;		//?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ï¿½?
+	private int totalBlock;		//?ï¿½ï¿½ï¿½? ë¸”ë¡
+	private int currentPage;	//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½?
 
 
-	private int startRecord;	//?‹œ?‘ ? ˆì½”ë“œ
-	private int endRecord;		//? ? ˆì½”ë“œ
+	private int startRecord;	//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì½”ë“œ
+	private int endRecord;		//?ï¿½ï¿½ ?ï¿½ï¿½ì½”ë“œ
 
 	private String category;	//ì¹´í…Œê³ ë¦¬
-	private String keyword;		//?‚¤?›Œ?“œ
+	private String keyword;		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 	
-	private Map<String, String> crimap;	//???…?´?‘ ?‚¤?›Œ?“œ ?“¤?–´?ˆ?Š”ê±?.
+	private Map<String, String> crimap;	//???ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?.
 
-	private Map<String, String> colMap;	//ì°¾ê³ ?‹¶?? ì»¬ëŸ¼ëª?
+	private Map<String, String> colMap;	//ì°¾ê³ ?ï¿½ï¿½?? ì»¬ëŸ¼ï¿½?
 
-	private List<String> values;	//sql ?•´?‰¬ë§µì²˜ë¦¬í• ?•Œ ??.
+	private List<String> values;	//sql ?ï¿½ï¿½?ï¿½ï¿½ë§µì²˜ë¦¬í• ?ï¿½ï¿½ ??.
 	
 	
 
@@ -34,7 +34,7 @@ public class BbsCriteria extends Snippet implements Criteria {
 	public BbsCriteria() {
 		crimap = new HashMap<String, String>();
 		colMap = new HashMap<String, String>();
-		//ì»¬ëŸ¼ëª? map?„ ë§Œë“¤?–´ì¤??‹¤
+		//ì»¬ëŸ¼ï¿½? map?ï¿½ï¿½ ë§Œë“¤?ï¿½ï¿½ï¿½??ï¿½ï¿½
 		colMap.put("t", "title");
 		colMap.put("w", "writer");
 		colMap.put("c", "content");
@@ -42,7 +42,7 @@ public class BbsCriteria extends Snippet implements Criteria {
 	}
 	
 	public String getSql(){
-		//ë¬¸ì?—´ ?‚¬?š©?•˜ì§? ë§ê³   stringbuilder?‚˜ ë²„í¼ ?¨?¼.
+		//ë¬¸ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ë§ê³   stringbuilder?ï¿½ï¿½ ë²„í¼ ?ï¿½ï¿½?ï¿½ï¿½.
 		StringBuilder builder = new StringBuilder(" AND ");
 		
 		Iterator<String> it = crimap.keySet().iterator();
@@ -60,7 +60,7 @@ public class BbsCriteria extends Snippet implements Criteria {
 			builder.append(colMap.get(key) +" like '%' ||#{key}||'%'");
 			builder.append(" AND ");
 			
-		}	
+		}
 		System.out.println(builder.substring(0, builder.length()-4));
 		return builder.substring(0, builder.length()-4);
 	}

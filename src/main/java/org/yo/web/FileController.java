@@ -1,7 +1,6 @@
 package org.yo.web;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -18,11 +17,10 @@ import org.yo.service.BoardService;
 import org.yo.vo.BbsVO;
 
 @Controller
-@RequestMapping("/bbs/*")
+@RequestMapping("/bbs/upload/*")
 public class FileController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(FileController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
 	@Inject
 	BoardService service;
@@ -32,7 +30,7 @@ public class FileController {
 	public String singleUp(@RequestParam MultipartFile upfile, Model model,
 			BbsVO vo) throws Exception {
 
-		System.out.println("업로드 실행");
+		logger.info(upfile.getName());
 		boolean b = upfile.isEmpty();// false이면 업도드된 파일이 있다.
 
 		String UUName = UUID.randomUUID().toString();
@@ -48,13 +46,14 @@ public class FileController {
 			
 			// 파일 이동(임시저장소 upfile의 정보를 영구적 저장소 uploadDirectory로 보내준다)
 			upfile.transferTo(new File("C:\\zzz\\upload", UUName));
+			vo.setFilename(UUName);
 			service.create(vo.setIsfile("T"));
 			
 			model.addAttribute("vo", service.read(vo.getBbsNo()));
 
 		}
 
-		return "/bbs/newList";
+		return "redirect:/bbs/board";
 
 	}
 
