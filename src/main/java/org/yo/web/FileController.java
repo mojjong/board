@@ -66,13 +66,9 @@ public class FileController {
 	@RequestMapping(value = "/singleDown", method = RequestMethod.GET)
 	public void singleDown(BbsVO vo, Model model, HttpServletResponse response) throws IOException {
 
-		System.out.println("다운     " + vo.toString());
-
 		// 선택한 글번호로 그 글에 업로드된 파일의 이름 가져오기
 		String UUFileName = service.getFileName(vo);
 		
-		System.out.println(UUFileName);
-
 		// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
 		response.setContentType("application/octet-stream");
 
