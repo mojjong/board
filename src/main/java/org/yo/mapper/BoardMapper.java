@@ -49,7 +49,9 @@ public interface BoardMapper {
 	@Delete("delete from tbl_reply where replyno=#{replyNo}")
 	public void replyDelete(Integer replyNo);
 	
-	@Insert("insert into tbl_upload (bbsno, filename) values(#{bbsNo}, string_array(#{filename}))")
+	@Insert("insert into tbl_file (bbsno, filename) values(#{bbsNo}, #{filename})")
 	public void singleUpload(BbsVO vo);
+	
+	public String getFileName(BbsVO vo);
 	
 }

@@ -39,7 +39,7 @@
 								<label class="control-label col-xs-1" for="exampleInputFile">File</label>
 								<div class="col-xs-10">
 									<p class="form-control-static">
-										<a href="/download?filename=${vo.getFilename() }">${vo.getFilename()}</a>
+										<a href="file/singleDown?filename=${vo.getFilename() }&bbsNo=${vo.getBbsNo()}">${vo.getFilename()}</a>
 									</p>
 								</div>
 							</div>

@@ -28,13 +28,6 @@ public class BoardService {
 	
 	
 	public BbsVO read(Integer bbsNo){
-		
-/*		BbsVO vo = new BbsVO();
-		vo.setBbsNo(1);
-		vo.setTitle("����");
-		vo.setContent("����");
-		vo.setWriter("����");*/
-		
 		return mapper.read(bbsNo);
 	}
 	
@@ -74,5 +67,9 @@ public class BoardService {
 	
 	public void replyDelete(Integer replyNo){
 		mapper.replyDelete(replyNo);
+	}
+	
+	public String getFileName(BbsVO vo){
+		return mapper.getFileName(vo);
 	}
 }

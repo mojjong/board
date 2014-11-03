@@ -91,7 +91,7 @@ function writingData(){
 	alert(upfile);
 	
 	if(upfile !== null && upfile !== ""){
-		document.writeForm.action = "upload/singleUpload";
+		document.writeForm.action = "file/singleUpload";
 		document.writeForm.enctype = "multipart/form-data";
 	}else{
 		document.writeForm.action = "write";
