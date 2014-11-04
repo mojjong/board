@@ -50,8 +50,10 @@ public interface BoardMapper {
 	public void replyDelete(Integer replyNo);
 	
 	@Insert("insert into tbl_file (bbsno, filename) values(#{bbsNo}, #{filename})")
-	public void singleUpload(BbsVO vo);
+	public void Upload(BbsVO vo);
 	
 	public String getFileName(BbsVO vo);
+	
+	public List<String> fileread(Integer bbsno);
 	
 }

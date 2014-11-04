@@ -34,7 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bbsno=#{bbsNo}
 	</update>
 
-	<insert id="create" parameterType="org.yo.vo.BbsVO" useGeneratedKeys="true">
+	<insert id="create" parameterType="org.yo.vo.BbsVO"
+		useGeneratedKeys="true">
 		<selectKey keyProperty="bbsNo" resultType="int" order="BEFORE">
 			SELECT seq_bbs.nextVal from dual
 		</selectKey>
@@ -45,20 +46,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	(#{bbsNo}, #{title},#{content},#{writer},#{isfile})]]>
 	</insert>
 
+
+
 	<select id="read" parameterType="int" resultType="org.yo.vo.BbsVO">
-		select
-			/*+INDEX_DESC(tbl_bbs pk_bbs)*/ b.bbsno, title, writer, regdate,
-			viewcnt, content, substr(filename, instr(filename, '_')+1) filename, isfile
+		select /*+INDEX_DESC(tbl_bbs pk_bbs)*/
+			bbsno, title, writer, regdate, viewcnt, content, isfile
 		from 
-			tbl_bbs b, tbl_file f where b.bbsno=#{bbsNo} and b.bbsno = f.bbsno(+)
+			tbl_bbs 
+		where 
+			bbsno = #{bbsno}
 	</select>
 
-	<select id="getFileName" parameterType="org.yo.vo.BbsVO" resultType="string">
+	<select id="fileread" parameterType="int" resultType="string">
 		select 
-			filename 
+			substr(filename, instr(filename, '_')+1) filename
 		from 
 			tbl_file 
-		where bbsno=#{bbsNo} and filename like '%'||#{filename}||'%'
+		where 
+			bbsno = #{bbsno}
+	</select>
+
+<!-- 
+	<select id="read" parameterType="int" resultType="org.yo.vo.BbsVO">
+		select
+			/*+INDEX_DESC(tbl_bbs pk_bbs)*/ b.bbsno, title, writer, regdate
+			,viewcnt, content, substr(filename, instr(filename, '_')+1) filename, isfile
+		from
+			tbl_bbs b, tbl_file f 
+		where 
+			b.bbsno=#{bbsNo} and b.bbsno = f.bbsno(+)
+	</select>
+ -->
+ 
+	<select id="getFileName" parameterType="org.yo.vo.BbsVO"
+		resultType="string">
+		select
+			filename
+		from
+			tbl_file
+		where 
+			bbsno=#{bbsNo} and filename like '%'||#{filename}||'%'
 	</select>
 
 </mapper>

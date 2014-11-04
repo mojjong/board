@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.yo.mapper.BoardMapper;
 import org.yo.vo.BbsVO;
 import org.yo.vo.ReplyVO;
@@ -28,16 +30,21 @@ public class BoardService {
 	
 	
 	public BbsVO read(Integer bbsNo){
-		return mapper.read(bbsNo);
+		BbsVO vo = mapper.read(bbsNo);
+		vo.setFileList(mapper.fileread(bbsNo));
+		return vo;
 	}
 	
+	@Transactional(propagation=Propagation.REQUIRED) //메소드 단위로 트랜잭션 처리하고 싶을때.
 	public void create(BbsVO vo){
 		
-		if(vo.getIsfile().equals("T")){
-			mapper.create(vo);
-			mapper.singleUpload(vo);
-		}else{
-			mapper.create(vo);
+		mapper.create(vo);
+		logger.info("mapper입니다.");
+		
+		
+		for (String filename : vo.getFileList()) {
+			logger.info("transactional : " + vo.getBbsNo() + ", " + filename);
+			mapper.Upload(vo.setFilename(filename));
 		}
 	};
 				

@@ -407,7 +407,7 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="bs-example">
-						<form name="writeForm" method="post" class="form-horizontal">
+						<form name="writeForm" method="post" action="write" enctype="multipart/form-data" class="form-horizontal">
 							<div class="form-group">
 								<label class="control-label col-xs-1">Name</label>
 								<div class="col-xs-10">
@@ -439,12 +439,15 @@
 							<div class="form-group">
 								<label class="control-label col-xs-1" for="exampleInputFile">File</label>
 								<div class="col-xs-10">
-									<input type="file" name="upfile">
+									<input type="file" name="upfile[0]">
+								    <input type="file" name="upfile[1]">
+								    <input type="file" name="upfile[2]">
+								    <input type="file" name="upfile[3]">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-xs-offset-1 col-xs-10">
-									<button id="writingBtn" class="btn btn-primary btn-lg">
+									<button type="submit" class="btn btn-primary btn-lg">
 										Submit</button>
 									<button type="reset" class="btn btn-default btn-lg">
 										Reset</button>
@@ -493,14 +496,6 @@
             });
         });
     </script>
-	<script>
-	EventUtil.addHandler(document, "DOMContentLoaded", function(event){
-		EventUtil.addHandler(writingBtn, "click", function(event){
-			//event = EventUtil.getEvent(event);
-			writingData();
-		}); 
-	})
-	</script>
 </body>
 
 </html>

@@ -86,19 +86,6 @@ function writeData(){
 	document.form1.submit();
 }
 
-function writingData(){
-	var upfile = document.writeForm.upfile.value;
-	alert(upfile);
-	
-	if(upfile !== null && upfile !== ""){
-		document.writeForm.action = "file/singleUpload";
-		document.writeForm.enctype = "multipart/form-data";
-	}else{
-		document.writeForm.action = "write";
-	}
-	document.writeForm.submit();
-}
-
 function modifyData(){
 	var bno = document.form1.bbsno.value;
 	var div = document.getElementById("viewContent_"+bno);

@@ -38,9 +38,11 @@
 							<div class="form-group">
 								<label class="control-label col-xs-1" for="exampleInputFile">File</label>
 								<div class="col-xs-10">
-									<p class="form-control-static">
-										<a href="file/singleDown?filename=${vo.getFilename() }&bbsNo=${vo.getBbsNo()}">${vo.getFilename()}</a>
-									</p>
+									<c:forEach var="filename" items="${vo.getFileList() }">
+										<p class="form-control-static">
+											<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }">${filename}</a>
+										</p>
+									</c:forEach>
 								</div>
 							</div>
 						</c:if>

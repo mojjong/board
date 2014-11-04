@@ -517,7 +517,8 @@ div.viewcontent {
 								class="glyphicon glyphicon-paperclip"></span>
 						</c:if> <c:if test="${board.newdata < 3 }">&nbsp;&nbsp;<span
 								class="label label-warning">New</span>
-						</c:if></li>
+						</c:if>
+					</li>
 					<li class="name">${board.writer}</li>
 					<li class="date">${board.regdate}</li>
 					<li class='hits'>${board.viewcnt}</li>

@@ -1,5 +1,6 @@
 package org.yo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -32,9 +33,14 @@ public class BoardServiceTest {
 	
 	@Test
 	public void create() {
-		 //title, content, writer, isfile
-		BbsVO vo = new BbsVO().setContent("content").setIsfile("F").setTitle("����").setWriter("�۾���");
-		service.create(vo);
+	      List<String> filenameList = new ArrayList<String>();
+	      filenameList.add("안녕1");
+	      filenameList.add("안녕2");
+	      //BbsVO vo = new BbsVO().setContent("content").setIsfile("T").setTitle("테스트").setWriter("테스트");
+	      BbsVO vo = new BbsVO().setContent("내용").setTitle("제목").setWriter("글쓴이").setIsfile("T");
+	      vo.setFileList(filenameList);
+	      
+	      service.create(vo);
 	}
 	
 
