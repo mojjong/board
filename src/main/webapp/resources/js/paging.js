@@ -146,12 +146,13 @@ function reModify(replyNo){
 	var div = document.getElementById("reContent_" + replyNo);
 	var replyContent = div.firstChild.nodeValue;
 	if(replyContent !== null){
-		div.innerHTML = "<div class='input-group'><input type='hidden' id='mod_replyNo' value='"+replyNo+"'><input id='mod_reply' type='text' class='form-control input-sm chat_input' value='"+ replyContent +"' />"
-				 + "<span class='input-group-btn'><button class='btn btn-default btn-sm' id='completemodbtn'>Complete</button></span></div>";
+		div.innerHTML = "<div class='input-group'><input type='hidden' id='mod_replyNo' value='"+replyNo+"'>"
+		+"<input id='mod_reply' type='text' class='form-control input-sm chat_input' value='"+ replyContent +"' />"
+		+ "<span class='input-group-btn'><button class='btn btn-default btn-sm' id='completemodbtn'>Complete</button></span></div>";
 		
-        var head= document.getElementsByTagName('head')[0];
-        var script= document.createElement('script');
-        script.type= 'text/javascript';
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
         script.innerHTML = "EventUtil.addHandler(completemodbtn, 'click', function(event){" + 
         					"reUpdate();" +
         					"})";
