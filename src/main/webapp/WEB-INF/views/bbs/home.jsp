@@ -30,10 +30,10 @@
     <!-- Codrops top bar -->
 
     <div class="wrapper">
-        <div class="screen" id="screen-1" data-video="http://ak7.picdn.net/shutterstock/videos/3671960/preview/stock-footage-flight-over-clouds-loop-able-animation.mp4">
+        <div class="screen" id="screen-1" data-video="c:\\zzz\\vid\\Cloud.mp4">
             <h1 class="video-title"><a href="/bbs/board">YoMam</a></h1>
         </div>
-        <div class="screen" id="screen-2" data-video="/resources/vid/dd.mp4">
+        <div class="screen" id="screen-2" data-video="c:\\zzz\\vid\\dd.mp4">
             <h1 class="video-title"><a href="/bbs/board">YoMam</a></h1>
         </div>
     </div>
