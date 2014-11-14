@@ -59,7 +59,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="fileread" parameterType="int" resultType="string">
 		select 
-			substr(filename, instr(filename, '_')+1) filename
+			<!-- substr(filename, instr(filename, '_')+1) filename -->
+			filename
 		from 
 			tbl_file 
 		where 
@@ -79,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  -->
  
 	<select id="getFileName" parameterType="org.yo.vo.BbsVO"
-		resultType="string">
+		resultType="org.yo.vo.BbsVO">
 		select
 			filename
 		from

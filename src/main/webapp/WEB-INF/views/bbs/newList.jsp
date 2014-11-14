@@ -79,6 +79,19 @@ div.viewcontent {
 	transition:  all 1s;
 }
 
+.downloadUL {
+	list-style: none;
+}
+
+.downloadUL li {
+	float: left;
+}
+
+.downloadUL li .thumb {
+	width: 100px;
+	height: 100px;
+}
+
 </style>
 <!-- BbsController에 의해 호출될 data.jsp페이지 -->
 <!-- data.html내용을 그대로 긁어와서 resources파일내부로 링크를 건 모든 곳(resources/되있던곳)에 /resources/라고 직접 넣어줌... -->
@@ -580,7 +593,7 @@ div.viewcontent {
 		EventUtil.addHandler(searchbtn, "click", function(event){
 			goSearch();
 		});
-	})
+	});
 	</script>
 
 </body>

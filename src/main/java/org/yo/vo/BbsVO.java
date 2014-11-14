@@ -2,6 +2,7 @@ package org.yo.vo;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -15,13 +16,37 @@ public class BbsVO {
 	private Date regdate;
 	private Integer viewcnt;
 	private Integer cnt;
-	private String isfile;
+	private String isfile = "F";
 	private String filename;
 	private Integer newdata;
-	private List<MultipartFile> upfile;
+	private List<String> suffixs;
+	private String suffix;
+	private List<String> fileNames;
 	private List<String> fileList;
 	
 	
+	
+
+	public BbsVO() {
+		super();
+		suffixs = new ArrayList<String>();
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+
+	public List<String> getSuffixs() {
+		return suffixs;
+	}
+
+	public void setSuffixs(List<String> suffixs) {
+		this.suffixs = suffixs;
+	}
 
 	public List<String> getFileList() {
 		return fileList;
@@ -29,15 +54,16 @@ public class BbsVO {
 
 	public BbsVO setFileList(List<String> fileList) {
 		this.fileList = fileList;
+		
 		return this;
 	}
 
-	public List<MultipartFile> getUpfile() {
-		return upfile;
+	public List<String> getFileNames() {
+		return fileNames;
 	}
 
-	public BbsVO setUpfile(List<MultipartFile> upfile) {
-		this.upfile = upfile;	
+	public BbsVO setFileNames(List<String> fileNames) {
+		this.fileNames = fileNames;
 		this.fileList = new ArrayList<String>();
 		return this;
 	}
@@ -123,6 +149,7 @@ public class BbsVO {
 		return filename;
 	}
 
+	
 	public BbsVO setFilename(String filename) {
 		this.filename = filename;
 		return this;
@@ -133,7 +160,8 @@ public class BbsVO {
 		return "BbsVO [bbsNo=" + bbsNo + ", title=" + title + ", content="
 				+ content + ", writer=" + writer + ", regdate=" + regdate
 				+ ", viewcnt=" + viewcnt + ", cnt=" + cnt + ", isfile="
-				+ isfile + ", fileName=" + filename + "]";
+				+ isfile + ", filename=" + filename + ", newdata=" + newdata
+				+ ", suffix=" + suffix + ", fileNames="
+				+ fileNames + ", fileList=" + fileList + "]";
 	}
-
 }

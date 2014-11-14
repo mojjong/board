@@ -4,6 +4,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<style>
+.uploadUL {
+	list-style: none;
+}
+
+.uploadUL li {
+	float: left;
+}
+
+.uploadUL li .thumb {
+	width: 100px;
+	height: 100px;
+}
+</style>
+
 <!-- BbsController에 의해 호출될 data.jsp페이지 -->
 <!-- data.html내용을 그대로 긁어와서 resources파일내부로 링크를건 모든 곳(/resources/되있던곳)에 /resources/라고 직접 넣어줌... -->
 
@@ -407,7 +423,8 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="bs-example">
-						<form name="writeForm" method="post" action="write" enctype="multipart/form-data" class="form-horizontal">
+						<form name="writeForm" class="form-horizontal">
+							<input type="hidden" name="fileNames">
 							<div class="form-group">
 								<label class="control-label col-xs-1">Name</label>
 								<div class="col-xs-10">
@@ -437,27 +454,36 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-xs-1" for="exampleInputFile">File</label>
-								<div class="col-xs-10">
-									<input type="file" name="upfile[0]">
-								    <input type="file" name="upfile[1]">
-								    <input type="file" name="upfile[2]">
-								    <input type="file" name="upfile[3]">
-								</div>
-							</div>
-							<div class="form-group">
 								<div class="col-xs-offset-1 col-xs-10">
-									<button type="submit" class="btn btn-primary btn-lg">
+									<button id="writeBtn" class="btn btn-primary btn-lg">
 										Submit</button>
 									<button type="reset" class="btn btn-default btn-lg">
 										Reset</button>
 								</div>
 							</div>
+							<label class="control-label col-xs-1" for="exampleInputFile">File</label>
+							<ul class="uploadUL">
+
+							</ul>
 						</form>
+						<div class="form-group">
+
+							<form target="zero" action="/bbs/file/upload" method="post"
+								enctype="multipart/form-data" class="form-horizontal">
+
+								<div class="col-xs-offset-1 col-xs-10">
+									<input type="file" name="file">
+									<button type="submit" class="btn btn-primary btn-sm">등록</button>
+								</div>
+
+							</form>
+						</div>
 					</div>
 					<p>&nbsp;</p>
 				</div>
 				<!-- /.box -->
+
+				<iframe name="zero" frameborder="0" width="0" height="0"></iframe>
 
 
 			</div>
@@ -495,6 +521,39 @@
                 "bAutoWidth": false
             });
         });
+        
+        EventUtil.addHandler(document, "DOMContentLoaded", function(event){
+    		EventUtil.addHandler(writeBtn, "click", function(event){
+    			writeSubmit();
+    		});
+    	});
+        
+        function updateResult(data){
+
+        	console.log(data);
+        	//$(".uploadUL").append("<li><image class='thumb' src='/web/file/view/"+ fileName+"'/></li>");
+        	if(data.suffix == '.jpg' || data.suffix == '.gif' || data.suffix == '.png' || data.suffix == '.bmp'){
+        		$(".uploadUL").append("<li><image class='thumb' data-src='" + data.fileName + "' src='/bbs/file/view?path="+ data.fileName+"'/></li>");
+        	}else{
+        		$(".uploadUL").append("<li><image class='thumb' data-src='" + data.fileName + "' src='/resources/img/iDVD.png'/></li>");
+        	}
+        }
+        
+        function writeSubmit() {
+        	
+        	
+        	
+            var srcList = [];
+            for(var i=0; i<$(".thumb").length; i++)
+               srcList.push($($(".thumb" ).get(i)).attr("data-src"));
+            
+            console.log(srcList);
+            
+             document.writeForm.action="write";
+             document.writeForm.method="post";
+             document.writeForm.fileNames.value = srcList;
+             document.writeForm.submit();   
+         }
     </script>
 </body>
 

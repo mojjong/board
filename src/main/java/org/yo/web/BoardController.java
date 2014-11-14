@@ -1,8 +1,7 @@
 package org.yo.web;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.yo.service.BoardService;
 import org.yo.vo.BbsVO;
 import org.yo.web.util.BbsCriteria;
@@ -63,7 +61,14 @@ public class BoardController {
 	// 글 보여주기
 	@RequestMapping("/view")
 	public String view(Integer bbsno, Model model) {
-		model.addAttribute("vo", service.read(bbsno));
+		
+		BbsVO vo = service.read(bbsno);
+		
+		logger.info(vo.getSuffixs().toString());
+		
+		
+		model.addAttribute("vo", vo);
+		
 		model.addAttribute("reList", service.replyList(bbsno));
 		return "bbs/viewContent";
 	}
@@ -79,31 +84,28 @@ public class BoardController {
 	public String writePost(BbsVO vo, Model model) throws Exception{
 		// 파일 업로드 동작이 추가될 경우.
 		
-		System.out.println(vo.toString());
-		//vo에 자동으로 업로드파일들이 set된다.
-		List<MultipartFile> list = vo.getUpfile();
-		String UUName = UUID.randomUUID().toString();
-		vo.setIsfile("F");
+		logger.info("BoardController - write : " + vo.toString());
 		
-		//업로드파일들의 이름을 넣을 리스트
-		List<String> fileList = vo.getFileList();
-
-		//업로드할 파일의 갯수만큼 for문 
-		for (MultipartFile file : list) {
-
-			//file이 비었다면 true
-			if (!file.isEmpty()) {
+		//vo에 자동으로 업로드파일들이 set된다.
+		List<String> fileNames = vo.getFileNames();
+		
+		List<String> suffixs = new ArrayList<String>();
+		
+		if(fileNames.size() != 0){
+			for(String fileName : fileNames){
+				logger.info(fileName);
+				String s = fileName.substring(fileName.lastIndexOf("."));
+				logger.info(s);
 				vo.setIsfile("T");
-				String fileName = UUName + "_" + file.getOriginalFilename();
-				fileList.add(fileName);
-				file.transferTo(new File("c://zzz//upload", fileName));
+				suffixs.add(s);
 			}
-			logger.info("파일사이즈 : " + fileList.size());
 		}
-
-		//업로드 파일이 있던 없던 create함수에게 넘긴다.
+		vo.setSuffixs(suffixs);
+		
+		logger.info(vo.toString());
+		
 		service.create(vo);
-		model.addAttribute("vo", service.read(vo.getBbsNo()));
+		
 		return "redirect:/bbs/board";
 	}
 
