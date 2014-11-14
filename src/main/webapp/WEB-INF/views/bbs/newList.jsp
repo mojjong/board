@@ -72,32 +72,31 @@ div.table ul.head li {
 }
 
 div.viewcontent {
-
--webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
-    animation-direction: alternate;
-    animation-direction: alternate;
-	transition:  all 1s;
+	-webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
+	animation-direction: alternate;
+	animation-direction: alternate;
+	transition: all 1s;
 }
 
 div.table ul.downloadUL {
 	height: 120px;
 	list-style: none;
 }
+
 div.table ul.downloadUL li.downLI {
 	border-right: 0px;
 	float: left;
 }
 
 div.table ul.downloadUL li .thumb {
-
 	width: 100px;
 	height: 100px;
 	margin-right: 10px;
 	float: left;
 }
-
-
 </style>
+
+
 <!-- BbsController에 의해 호출될 data.jsp페이지 -->
 <!-- data.html내용을 그대로 긁어와서 resources파일내부로 링크를 건 모든 곳(resources/되있던곳)에 /resources/라고 직접 넣어줌... -->
 
@@ -330,7 +329,8 @@ div.table ul.downloadUL li .thumb {
 				<ul class="dropdown-menu">
 					<!-- User image -->
 					<li class="user-header bg-light-blue"><img
-						src="/resources/img/avatar3.png" class="img-circle" alt="User Image" />
+						src="/resources/img/avatar3.png" class="img-circle"
+						alt="User Image" />
 						<p>
 							Jane Doe - Web Developer <small>Member since Nov. 2012</small>
 						</p></li>
@@ -365,7 +365,8 @@ div.table ul.downloadUL li .thumb {
 		<section class="sidebar"> <!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="/resources/img/avatar3.png" class="img-circle" alt="User Image" />
+				<img src="/resources/img/avatar3.png" class="img-circle"
+					alt="User Image" />
 			</div>
 			<div class="pull-left info">
 				<p>Hello, Jane</p>
@@ -387,11 +388,11 @@ div.table ul.downloadUL li .thumb {
 		</form>
 		<!-- /.search form --> <!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
-			<li><a href="/resources/index.html"> <i class="fa fa-dashboard"></i>
-					<span>Dashboard</span>
+			<li><a href="/resources/index.html"> <i
+					class="fa fa-dashboard"></i> <span>Dashboard</span>
 			</a></li>
-			<li><a href="/resources/widgets.html"> <i class="fa fa-th"></i> <span>Widgets</span>
-					<small class="badge pull-right bg-green">new</small>
+			<li><a href="/resources/widgets.html"> <i class="fa fa-th"></i>
+					<span>Widgets</span> <small class="badge pull-right bg-green">new</small>
 			</a></li>
 			<li class="treeview"><a href="#"> <i
 					class="fa fa-bar-chart-o"></i> <span>Charts</span> <i
@@ -441,11 +442,13 @@ div.table ul.downloadUL li .thumb {
 					<li class="active"><a href="board"><i
 							class="fa fa-angle-double-right"></i> Yo Free Board</a></li>
 				</ul></li>
-			<li><a href="/resources/calendar.html"> <i class="fa fa-calendar"></i>
-					<span>Calendar</span> <small class="badge pull-right bg-red">3</small>
+			<li><a href="/resources/calendar.html"> <i
+					class="fa fa-calendar"></i> <span>Calendar</span> <small
+					class="badge pull-right bg-red">3</small>
 			</a></li>
-			<li><a href="/resources/mailbox.html"> <i class="fa fa-envelope"></i>
-					<span>Mailbox</span> <small class="badge pull-right bg-yellow">12</small>
+			<li><a href="/resources/mailbox.html"> <i
+					class="fa fa-envelope"></i> <span>Mailbox</span> <small
+					class="badge pull-right bg-yellow">12</small>
 			</a></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-folder"></i>
 					<span>Examples</span> <i class="fa fa-angle-left pull-right"></i>
@@ -486,9 +489,9 @@ div.table ul.downloadUL li .thumb {
 		<div class="table">
 			<div align="right" style="margin-bottom: 2px;">
 				<form name="form1">
-					<input type="hidden" name="bbsno" />
-					<input type="hidden" name="prebbsno" />
-					<input type="hidden" name="page"> <select name="category">
+					<input type="hidden" name="bbsno" /> <input type="hidden"
+						name="prebbsno" /> <input type="hidden" name="page"> <select
+						name="category">
 
 						<option value="none">--</option>
 						<option value="w" ${pageVo.selected("w") }>작성자</option>
@@ -497,7 +500,8 @@ div.table ul.downloadUL li .thumb {
 						<option value="w:t" ${pageVo.selected("w:t") }>작성자 + 제목</option>
 						<option value="t:c" ${pageVo.selected("t:c") }>제목 + 내용</option>
 
-					</select> <input type="text" name="keyword" value="${pageVo.keyword }" placeholder="Search">
+					</select> <input type="text" name="keyword" value="${pageVo.keyword }"
+						placeholder="Search">
 
 					<button id="searchbtn" class="btn btn-default btn-flat">
 						<span class="glyphicon glyphicon-search"></span>
@@ -513,46 +517,34 @@ div.table ul.downloadUL li .thumb {
 			</ul>
 			<!-- 게시판 리스트 출력 -->
 
-<script type="text/javascript" src="/resources/js/paging.js"></script>
-<script type="text/javascript" src="/resources/js/event.js"></script>
+			<script type="text/javascript" src="/resources/js/paging.js"></script>
+			<script type="text/javascript" src="/resources/js/event.js"></script>
 
-<%-- <form name=''>
-  <input type='hidden' name='bno'>
-  <input type='hidden' name='page' value='${cri.page }'>
-  <input type='text' name='keyword' value='${cri.keyword }'>
-  <input type='checkbox' name="types" value="t" ${cri.checked("t") }>Title
-  <input type='checkbox' name="types" value="w" ${cri.checked("w") }>Writer
-  <input type='checkbox' name="types" value="c" ${cri.checked("c") }>Content
-  <button onclick="javascript:goSearch();">Search</button>
-</form> --%>
-
-
-				<c:forEach var="board" items="${boardList }">
+			<c:forEach var="board" items="${boardList }">
 				<ul>
 					<li class="no">${board.bbsNo}</li>
-					<li class="subject"><a href="javascript:viewData(${board.bbsNo })">${board.title}</a>
-						<c:if test="${board.isfile == 'T' }">&nbsp;&nbsp;<span
+					<li class="subject"><a
+						href="javascript:viewData(${board.bbsNo })">${board.title}</a> <c:if
+							test="${board.isfile == 'T' }">&nbsp;&nbsp;<span
 								class="glyphicon glyphicon-paperclip"></span>
 						</c:if> <c:if test="${board.newdata < 3 }">&nbsp;&nbsp;<span
 								class="label label-warning">New</span>
-						</c:if>
-					</li>
+						</c:if></li>
 					<li class="name">${board.writer}</li>
 					<li class="date">${board.regdate}</li>
 					<li class='hits'>${board.viewcnt}</li>
-					</ul>
-					<!-- 게시글 나올곳. -->
-					<div id="viewContent_${board.bbsNo }" class="viewcontent"></div>
-				</c:forEach>
-				
+				</ul>
+				<!-- 게시글 나올곳. -->
+				<div id="viewContent_${board.bbsNo }" class="viewcontent"></div>
+			</c:forEach>
+
 
 			<div class="dataTables_paginate">
 				<%@ include file="include_pageAction.jsp"%>
 
 			</div>
 			<div class="input-group-btn">
-				<button id="writebtn" type="button"
-					class="btn btn-default btn-flat">Write</button>
+				<button id="writebtn" type="button" class="btn btn-default btn-flat">Write</button>
 			</div>
 		</div>
 
@@ -588,17 +580,15 @@ div.table ul.downloadUL li .thumb {
 				"bAutoWidth" : false
 			});
 		});
-	</script>
-	<script>
-	EventUtil.addHandler(document, "DOMContentLoaded", function(event){
-		EventUtil.addHandler(writebtn, "click", function(event){
-			//event = EventUtil.getEvent(event);
-			writeData();
-		});             
-		EventUtil.addHandler(searchbtn, "click", function(event){
-			goSearch();
+		
+		EventUtil.addHandler(document, "DOMContentLoaded", function(event) {
+			EventUtil.addHandler(writebtn, "click", function(event) {
+				writeData();
+			});
+			EventUtil.addHandler(searchbtn, "click", function(event) {
+				goSearch();
+			});
 		});
-	});
 	</script>
 
 </body>
