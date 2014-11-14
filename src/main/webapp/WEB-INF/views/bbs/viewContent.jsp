@@ -34,48 +34,46 @@
 								&nbsp;${vo.getViewcnt() }
 							</div>
 						</div>
-						<c:if test="${vo.getIsfile() == 'T' }">
 							<div class="form-group">
+						<c:if test="${vo.getIsfile() == 'T' }">
 								<label class="control-label col-xs-1" for="exampleInputFile">File </label>
-								<div class="col-xs-10">
+								<div class="col-xs-10" style="margin-bottom:10px; height:120px">
 								<ul class="downloadUL">
 									<c:forEach var="filename" items="${vo.getFileList() }">
-										<p class="form-control-static">
 											<c:choose>
 											<c:when test="${vo.getSuffixs().get(index) == '.jpg' }"> 
 												<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }
 												&suffix=${vo.getSuffixs().get(index)}">
-													<li><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
+													<li class="downLI"><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
 												</a>
 											</c:when>
 											<c:when test="${vo.getSuffixs().get(index) == '.png' }"> 
 												<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }">
-													<li><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
+													<li class="downLI"><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
 												</a>
 											</c:when>
 											<c:when test="${vo.getSuffixs().get(index) == '.bmp' }"> 
 												<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }">
-													<li><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
+													<li class="downLI"><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
 												</a>
 											</c:when>
 											<c:when test="${vo.getSuffixs().get(index) == '.gif' }"> 
 												<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }">
-													<li><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
+													<li class="downLI"><image class='thumb' src='/bbs/file/view?path=${filename }'/></li>
 												</a>
 											</c:when>
 											<c:otherwise> 
 												<a href="file/download?bbsNo=${vo.getBbsNo() }&filename=${filename }">
-													<li><image class='thumb' src='/resources/img/iDVD.png'/></li>
+													<li class="downLI"><image class='thumb' src='/resources/img/iDVD.png'/></li>
 												</a>
 											</c:otherwise>
 											</c:choose>
-										</p>
 										
 									</c:forEach>
 									</ul>
 								</div>
-							</div>
 						</c:if>
+							</div>
 
 
 						<div class='form-group'>
@@ -96,7 +94,6 @@
 						<div class="form-group">
 
 							<div class='col-xs-offset-1 col-xs-10'>
-								<hr>
 
 								<c:if test="${reList.size() != 0}">
 
@@ -114,7 +111,6 @@
 												class="glyphicon glyphicon-minus"></span> delete</a>
 										</h6>
 										<div id="reContent_${revo.getReplyNo() }">${revo.getReply() }</div>
-										<hr>
 									</c:forEach>
 
 								</c:if>

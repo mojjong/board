@@ -79,18 +79,23 @@ div.viewcontent {
 	transition:  all 1s;
 }
 
-.downloadUL {
+div.table ul.downloadUL {
+	height: 120px;
 	list-style: none;
 }
-
-.downloadUL li {
+div.table ul.downloadUL li.downLI {
+	border-right: 0px;
 	float: left;
 }
 
-.downloadUL li .thumb {
+div.table ul.downloadUL li .thumb {
+
 	width: 100px;
 	height: 100px;
+	margin-right: 10px;
+	float: left;
 }
+
 
 </style>
 <!-- BbsController에 의해 호출될 data.jsp페이지 -->

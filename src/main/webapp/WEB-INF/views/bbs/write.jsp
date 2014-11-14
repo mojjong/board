@@ -7,6 +7,7 @@
 
 <style>
 .uploadUL {
+	position: relative;
 	list-style: none;
 }
 
@@ -15,8 +16,11 @@
 }
 
 .uploadUL li .thumb {
-	width: 100px;
+	width: 260px;
 	height: 100px;
+	padding-right: 10px;
+	margin-left: -150px;
+	padding-bottom: 10px;
 }
 </style>
 
@@ -462,16 +466,15 @@
 								</div>
 							</div>
 							<label class="control-label col-xs-1" for="exampleInputFile">File</label>
-							<ul class="uploadUL">
 
-							</ul>
 						</form>
 						<div class="form-group">
 
 							<form target="zero" action="/bbs/file/upload" method="post"
 								enctype="multipart/form-data" class="form-horizontal">
-
-								<div class="col-xs-offset-1 col-xs-10">
+								
+									<div class="col-xs-offset-1 col-xs-10"><ul class="uploadUL"></ul></div>
+								<div class="col-xs-offset-1">
 									<input type="file" name="file">
 									<button type="submit" class="btn btn-primary btn-sm">등록</button>
 								</div>
