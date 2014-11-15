@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.yo.service.BoardService;
 import org.yo.vo.BbsVO;
 import org.yo.web.util.BbsCriteria;
@@ -29,11 +30,29 @@ public class BoardController {
 
 	// 리스트 보여주기
 	@RequestMapping("/board")
-	public String board(
-			@RequestParam(value = "page", defaultValue = "1") Integer page,
-			String category, String keyword, Model model) { // ���������� model
-															// ��ü ����
+	@ResponseBody
+	public List<BbsVO> board(@RequestParam(value = "page", defaultValue = "1") Integer page,
+			String category, String keyword) {
+		
+		Criteria cri = new BbsCriteria();
 
+		cri.setCurrentPage(page);
+		if (keyword != null && keyword != "") {
+			cri.setCategory(category);
+			cri.setKeyword(keyword);
+			String[] cate = category.split(":");
+
+			for (String key : cate) {
+				cri.addCri(key, keyword);
+			}
+		}
+
+		logger.info(cri.toString());
+
+		return service.list(cri);
+		
+		
+/*
 		Criteria cri = new BbsCriteria();
 
 		cri.setCurrentPage(page);
@@ -55,7 +74,7 @@ public class BoardController {
 
 		model.addAttribute("boardList", list);
 		model.addAttribute("pageVo", cri);
-		return "bbs/newList";
+		return "bbs/newList";*/
 	}
 
 	// 글 보여주기

@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	  	bbsno > 0 and rownum <= ((CEIl(#{currentPage})*75)+1)
    ]]>
 		${sql} 
-   <![CDATA[   ) where rn>((#{currentPage}-1)*15) and rn<=(#{currentPage}*15)
+   <![CDATA[   ) where rn>((#{currentPage}-1)*30) and rn<=(#{currentPage}*30)
     ]]>
 
 	</select>
