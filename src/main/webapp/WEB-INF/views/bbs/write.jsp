@@ -410,6 +410,7 @@
 
 		<script type="text/javascript" src="/resources/js/paging.js"></script>
 		<script type="text/javascript" src="/resources/js/event.js"></script>
+		<script type="text/javascript" src="/resources/fck/ckeditor.js"></script>
 
 		<!-- Right side column. Contains the navbar and content of the page -->
 		<aside class="right-side"> <!-- Content Header (Page header) -->
@@ -455,6 +456,10 @@
 								<div class="col-xs-10">
 									<textarea class="form-control" rows="10" name="content"
 										placeholder="Enter Content"></textarea>
+										<!-- fck editor 설정 -->
+										<script type="text/javascript">
+               			 					CKEDITOR.replace( 'content' );
+            							</script>
 								</div>
 							</div>
 							<div class="form-group">
