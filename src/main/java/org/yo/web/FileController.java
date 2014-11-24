@@ -151,8 +151,8 @@ public class FileController {
 		// 2. 다운 로드할 파일 명을 header정보로 설정
 		response.setHeader("Content-Disposition", "attachment; filename="
 				+ new String(downFileName.getBytes("UTF-8"), "8859_1"));// 8859-1방식은
-																			// 라틴방식이다.
-																			// (한글처리)
+																		// 라틴방식이다.
+																		// (한글처리)
 
 		// 위에서 filename으로 파일이 넘어간다.
 		OutputStream os = response.getOutputStream();

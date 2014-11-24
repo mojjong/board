@@ -96,31 +96,28 @@ div.table ul.downloadUL li .thumb {
 }
 </style>
 
-			<script type="text/javascript" src="/resources/js/paging.js"></script>
-			<script type="text/javascript" src="/resources/js/event.js"></script>
-			<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/resources/js/paging.js"></script>
+<script type="text/javascript" src="/resources/js/event.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
 
 <script>
     $(document).ready(function()
     {
-    	var cnt = 1;
+    	var currentPage = 1;
+    	checkForHash();
+    	console.log("set currentPage = " + currentPage);
         var target = $(".ul_table");
-        $.getJSON("/bbs/board", function (data) {
+        
+        $.getJSON("/bbs/list?page=" + currentPage, function (data) {
             var items = "";
             
             $.each(data, function (key, val) {
-            
-               	
-            	/* <li class="subject"><a
-				href="javascript:viewData(${board.bbsNo })">${board.title}</a> <c:if
-					test="${board.isfile == 'T' }">&nbsp;&nbsp;<span
-						class="glyphicon glyphicon-paperclip"></span>
-				</c:if> <c:if test="${board.newdata < 3 }">&nbsp;&nbsp;<span
-						class="label label-warning">New</span>
-				</c:if></li> */
             	items += "<ul>"+
                 		"<li class='no'>"+val.bbsNo+"</li>"+
-                        "<li class='subject'><a href='javascript:viewData("+val.bbsNo+")'>"+val.title+"</a>";
+                        "<li class='subject'><a href='javascript:viewData("+val.bbsNo+")' id='link'>"+val.title+"</a>";
                     	if(val.isfile !== 'F'){
                     		
                         	items += "&nbsp;&nbsp;<span class='glyphicon glyphicon-paperclip'></span>"
@@ -132,7 +129,7 @@ div.table ul.downloadUL li .thumb {
                         "<li class='date'>"+val.regdate+"</li>"+
                         "<li class='hits'>"+val.viewcnt+"</li>"+
                 		"</ul>";
-                
+            
                 
                 if(key == 14) {
                     $(window).bind("scroll",function infinityScrollFunction(){
@@ -140,32 +137,32 @@ div.table ul.downloadUL li .thumb {
                     	
                     	//현재문서의 높이를 구함.
                         var documentHeight  = $(document).height();
-                        console.log("documentHeight : " + documentHeight);
+                        //console.log("documentHeight : " + documentHeight);
 
                         //scrollTop() 메서드는 선택된 요소의 세로 스크롤 위치를 설정하거나 반환
                         //스크롤바가 맨 위쪽에 있을때 , 위치는 0
-                        console.log("window의 scrollTop() : " + $(window).scrollTop());
+                        //console.log("window의 scrollTop() : " + $(window).scrollTop());
                         //height() 메서드는 브라우저 창의 높이를 설정하거나 반환
-                        console.log("window의 height() : " + $(window).height());
+                        //console.log("window의 height() : " + $(window).height());
 
                         //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
                         //세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
                         var scrollHeight = $(window).scrollTop()+$(window).height();
-                        console.log("scrollHeight : " + scrollHeight);
+                        //console.log("scrollHeight : " + scrollHeight);
 
                         
                         
                         if(scrollHeight == documentHeight) { //문서의 맨끝에 도달했을때 내용 추가
-                        	cnt+=1;
-                        	alert(cnt);
+                        	currentPage++;
+                        	console.log(currentPage + " 페이지 로드");
                         	var target = $(".ul_table");
-                            $.getJSON("/bbs/board?page="+cnt, function (data) {
+                            $.getJSON("/bbs/list?page="+currentPage, function (data) {
                                 
                                 $.each(data, function (key, val) {
                                 	
-                                	var items = "<ul>"+
+                                	items = "<ul>"+
 		                            		"<li class='no'>"+val.bbsNo+"</li>"+
-		                            		"<li class='subject'><a href='javascript:viewData("+val.bbsNo+")'>"+val.title+"</a>";
+		                            		"<li class='subject'><a href='javascript:viewData("+val.bbsNo+")' id='link'>"+val.title+"</a>";
                                 	
 		                            if(val.isfile !== 'F'){
                                 		items += "&nbsp;&nbsp;<span class='glyphicon glyphicon-paperclip'></span>";
@@ -181,34 +178,7 @@ div.table ul.downloadUL li .thumb {
 		                                	"</ul>";
                                 	
 		                            $(items).appendTo(target);
-                                	
-                                	/* items.push("<ul>");
-                            		items.push("<li class='no'>"+val.bbsNo+"</li>");
-                            		items.push("<li class='subject'><a href='javascript:viewData("+val.bbsNo+")'>"+val.title+"</a>");
-                                	if(val.isfile !== 'F'){
-                                		items.push("&nbsp;&nbsp;<span class='glyphicon glyphicon-paperclip'></span>");
-                                	}
-                                	if(val.newdata < 3){
-                                		items.push("&nbsp;&nbsp;<span class='label label-warning'>New</span>");
-                                	}
-                                	items.push("</li><li class='name'>"+val.writer+"</li>");
-                                	items.push("<li class='date'>"+val.regdate+"</li>");
-                                	items.push("<li class='hits'>"+val.viewcnt+"</li>");
-                                	items.push("</ul>"); */
-                                	
-                                	/* $("<ul>"+
-                                    		"<li class='no'>"+val.bbsNo+"</li>"+
-                                            "<li class='subject'><a href='view?bbsno="+val.bbsNo+"'>"+val.title+"</a></li>"+
-                                            "<li class='name'>"+val.writer+"</li>"+
-                                            "<li class='date'>"+val.regdate+"</li>"+
-                                            "<li class='hits'>"+val.viewcnt+"</li>"+
-                                    "</ul>").appendTo(target); */
-                                    
                                 });
-                                
-                                /* $( "<ul/>", {
-                                	html: items.join( "" )
-                                }).appendTo(target); */
                                 
                             });
                         }
@@ -216,64 +186,27 @@ div.table ul.downloadUL li .thumb {
                 }
             });
             target.html(items);
+            $('#writebtn').bind('click', function(e) {
+            	console.log("현재 페이지 : " + currentPage);
+                document.location.hash = "#" + currentPage;
+                writeData();
+            });
+            
         });
+        
+        function checkForHash() {
+        	console.log(document.location.hash);
+            if(document.location.hash){
+                var HashLocationName = document.location.hash;
+                HashLocationName = HashLocationName.replace("#","");
+                currentPage = HashLocationName;
+                console.log("보여줄 페이지 : " + currentPage);
+            }
+        }
     });
     
-    /* function infinityScrollFunction(cnt) {
-
-         //현재문서의 높이를 구함.
-        var documentHeight  = $(document).height();
-        console.log("documentHeight : " + documentHeight);
-
-        //scrollTop() 메서드는 선택된 요소의 세로 스크롤 위치를 설정하거나 반환
-        //스크롤바가 맨 위쪽에 있을때 , 위치는 0
-        console.log("window의 scrollTop() : " + $(window).scrollTop());
-        //height() 메서드는 브라우저 창의 높이를 설정하거나 반환
-        console.log("window의 height() : " + $(window).height());
-
-        //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
-        //세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
-        var scrollHeight = $(window).scrollTop()+$(window).height();
-        console.log("scrollHeight : " + scrollHeight);
-
-        if(scrollHeight == documentHeight) { //문서의 맨끝에 도달했을때 내용 추가
-        	var target = $(".ul_table");
-            $.getJSON("/bbs/board?page="+cnt, function (data) {
-                var items = [];
-                $.each(data, function (key, val) {
-                	cnt++;
-                	
-                	items.push("<ul>");
-            		items.push("<li class='no'>"+val.bbsNo+"</li>");
-            		items.push("<li class='subject'><a href='javascript:viewData("+val.bbsNo+")'>"+val.title+"</a>");
-                	if(val.isfile !== 'F'){
-                		items.push("&nbsp;&nbsp;<span class='glyphicon glyphicon-paperclip'></span>");
-                	}
-                	if(val.newdata < 3){
-                		items.push("&nbsp;&nbsp;<span class='label label-warning'>New</span>");
-                	}
-                	items.push("</li><li class='name'>"+val.writer+"</li>");
-                	items.push("<li class='date'>"+val.regdate+"</li>");
-                	items.push("<li class='hits'>"+val.viewcnt+"</li>");
-                	items.push("</ul>");
-                	
-                	 $("<ul>"+
-                    		"<li class='no'>"+val.bbsNo+"</li>"+
-                            "<li class='subject'><a href='view?bbsno="+val.bbsNo+"'>"+val.title+"</a></li>"+
-                            "<li class='name'>"+val.writer+"</li>"+
-                            "<li class='date'>"+val.regdate+"</li>"+
-                            "<li class='hits'>"+val.viewcnt+"</li>"+
-                    "</ul>").appendTo(target); 
-                });
-                
-                $( "<ul/>", {
-                	html: items.join( "" )
-                }).appendTo(target);
-                
-            });
-        } 
-        
-    }//function infinityScrollFunction()*/
+    
+    
 </script>
 
 
@@ -668,11 +601,12 @@ div.table ul.downloadUL li .thumb {
 
 		<div class="table">
 			<div align="right" style="margin-bottom: 2px;">
-				<form name="form1">
-					<input type="hidden" name="bbsno" /> <input type="hidden"
-						name="prebbsno" /> <input type="hidden" name="page"> <select
-						name="category">
-
+				<form name = "form1" id = "form1">
+					<input type="hidden" name="bbsno" /> 
+					<input type="hidden" name="prebbsno" /> 
+					<input type="hidden" name="page"> 
+					
+					<select name="category">
 						<option value="none">--</option>
 						<option value="w" ${pageVo.selected("w") }>작성자</option>
 						<option value="t" ${pageVo.selected("t") }>제목</option>
@@ -716,13 +650,11 @@ div.table ul.downloadUL li .thumb {
 				<!-- 게시글 나올곳. -->
 				<div id="viewContent_${board.bbsNo }" class="viewcontent"></div>
 			</c:forEach>--%>
-			
-			
-			<div class="ul_table">
-			
-			</div>
 
-<%-- 
+
+			<div class="ul_table"></div>
+
+			<%-- 
 			<div class="dataTables_paginate">
 				<%@ include file="include_pageAction.jsp"%>
 
@@ -766,14 +698,96 @@ div.table ul.downloadUL li .thumb {
 		});
 		
 		EventUtil.addHandler(document, "DOMContentLoaded", function(event) {
-			EventUtil.addHandler(writebtn, "click", function(event) {
+			/* EventUtil.addHandler(writebtn, "click", function(event) {
+				document.location.hash = "#" + currentPage;
 				writeData();
-			});
+			}); */
 			EventUtil.addHandler(searchbtn, "click", function(event) {
 				goSearch();
 			});
 		});
 	</script>
+
+<!-- 	<script>
+	var currentPage = 1;
+	$(document).ready(function callList(){
+			
+			checkForHash();
+			console.log("현재 페이지 : " + currentPage);
+			var target = $(".ul_table");
+			document.form1.page.value = currentPage;
+			console.log("form1 page : " + document.form1.page.value);
+			var formData = $("#form1").serialize();
+			console.log(formData);
+			$.ajax({
+				type : "GET",
+				url : "/bbs/list",
+				data : formData, //변환된 formData를 요청
+				dataType : "JSON",
+				success : function(data) {
+					$.each(data, function(key, val) {
+						var items = "<ul>" + 
+									"<li class='no'>" + val.bbsNo + "</li>" + 
+									"<li class='subject'><a href='javascript:viewData(" + val.bbsNo + ")' id='link'>" + val.title + "</a>";
+						if (val.isfile !== 'F') {
+
+							items += "&nbsp;&nbsp;<span class='glyphicon glyphicon-paperclip'></span>"
+						}
+						if (val.newdata < 3) {
+							items += "&nbsp;&nbsp;<span class='label label-warning'>New</span></li>"
+						}
+							items += "<li class='name'>" + val.writer + "</li>" + 
+									"<li class='date'>" + val.regdate + "</li>" + 
+									"<li class='hits'>" + val.viewcnt + "</li>" + 
+									"</ul>";
+							$(".ul_table").append(items);
+							
+						if(currentPage == 1){
+							$(window).bind("scroll",function infinityScrollFunction(){
+								//현재문서의 높이를 구함.
+								var documentHeight = $(document).height();
+								console.log("documentHeight : " + documentHeight);
+
+								//scrollTop() 메서드는 선택된 요소의 세로 스크롤 위치를 설정하거나 반환
+								//스크롤바가 맨 위쪽에 있을때 , 위치는 0
+								console.log("window의 scrollTop() : " + $(window).scrollTop());
+								//height() 메서드는 브라우저 창의 높이를 설정하거나 반환
+								console.log("window의 height() : " + $(window).height());
+
+								//세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
+								//세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
+								var scrollHeight = $(window).scrollTop() + $(window).height();
+								console.log("scrollHeight : " + scrollHeight);
+
+								if (scrollHeight == documentHeight) { //문서의 맨끝에 도달했을때 내용 추가
+									currentPage++;
+									callList();
+								}
+							});
+						}
+					});
+					
+					$('#writebtn').bind( 'click', function(e) {
+						alert("현재 페이지 : " + currentPage);
+						document.location.hash = "#" + currentPage;
+						alert("set hash : " + currentPage);
+						writeData();
+					});
+				}
+			});
+
+			function checkForHash() {
+				console.log("해쉬 페이지 : " + document.location.hash);
+				if (document.location.hash) {
+					var HashLocationName = document.location.hash;
+					HashLocationName = HashLocationName.replace("#", "");
+					currentPage = HashLocationName;
+					console.log("보여줄 페이지 : " + currentPage);
+				}
+			}
+
+	});
+	</script> -->
 
 </body>
 </html>

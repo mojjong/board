@@ -454,8 +454,7 @@
 							<div class="form-group">
 								<label class="control-label col-xs-1">Content</label>
 								<div class="col-xs-10">
-									<textarea class="form-control" rows="10" name="content"
-										placeholder="Enter Content"></textarea>
+									<textarea class="form-control" rows="10" name="content" placeholder="Enter Content"></textarea>
 										<!-- fck editor 설정 -->
 										<script type="text/javascript">
                			 					CKEDITOR.replace( 'content' );

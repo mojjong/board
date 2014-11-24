@@ -82,7 +82,7 @@ function deleteData(){
 function writeData(){
 	document.form1.method = "get";
 	document.form1.action = "write";
-	document.form1.page.value = 1;
+//	document.form1.page.value = 1;
 	document.form1.submit();
 }
 

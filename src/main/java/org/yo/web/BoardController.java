@@ -2,6 +2,7 @@ package org.yo.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -27,9 +28,14 @@ public class BoardController {
 
 	@Inject
 	private BoardService service;
-
+	
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		return "bbs/newList";
+	}
+	
 	// 리스트 보여주기
-	@RequestMapping("/board")
+	@RequestMapping(value = "/list", produces="application/json")
 	@ResponseBody
 	public List<BbsVO> board(@RequestParam(value = "page", defaultValue = "1") Integer page,
 			String category, String keyword) {
